@@ -1,0 +1,73 @@
+import requests
+import time
+
+class ResponseError(Exception):
+    def __init__(self, value):
+        self.value = value
+        self.code = value['error_code']
+    def __str__(self):
+        return repr(self.value)
+    
+def get_response(apiname, params):
+    if get_response.last_call:
+        dt = time.perf_counter() - get_response.last_call
+        get_response.last_call = time.perf_counter()
+        if dt < 0.34:
+            time.sleep(0.34-dt)
+    else:
+        get_response.last_call = time.perf_counter()
+
+    params['v'] = 5.29
+    r = requests.post('https://api.vk.com/method/'+apiname, params=params)
+    if r.status_code == requests.codes.ok:
+        json = r.json()
+        if 'error' in json:
+            # print('There is error[{}]:'.format(json['error']['error_code']), json['error']['error_msg'])
+            raise ResponseError(json['error'])
+        return json['response']
+    else:
+        print('FAIL code:', r.status_code)
+        return
+
+get_response.last_call = None
+
+
+
+def get_users(users, fields=''):
+    """
+    :param users:
+     list of user_id's
+    :param fields:
+     string containing desired fields separated by comma
+    :return:
+    """
+    users_str = ', '.join(str(user) for user in users)
+    params = {
+        'user_ids': users_str,
+        'fields': fields,
+    }
+    r = get_response('users.get', params)
+    # print(r)
+    return r
+
+def get_photos(owner_id, album_id='profile', rev=1):
+    params = {
+        'owner_id': owner_id,
+        'album_id': album_id,
+        'rev': rev
+    }
+    r = get_response('photos.get', params)
+    return r
+
+def get_likes(owner_id, item_id, type, count=1000, filter='likes', extended=0):
+    params = {
+        'owner_id': owner_id,
+        'item_id': item_id,
+        'type': type,
+        'count': count,
+        'filter': filter,
+        'extended': extended
+    }
+    r = get_response('likes.getList', params)
+    return r
+
