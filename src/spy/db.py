@@ -38,7 +38,7 @@ def create_online_history_table():
         "  id                   int         NOT NULL,"
         "  user_id              int         NOT NULL,"
         "  online_status_change int         NOT NULL,"
-        "  date                 DATETIME            ,"
+        "  ondate               DATETIME            ,"
         "  PRIMARY KEY (id)"
         ")")
     if not table_exists(table_name):
@@ -51,7 +51,7 @@ def create_online_history_table():
 def add_online_status(user_id, online, date):
 
     add_post = ("INSERT INTO " + table_name+ " "
-                "(user_id, online_status_change, date)"
+                "(user_id, online_status_change, ondate)"
                 "VALUES (%s, %s, %s)")
 
     data_post= (user_id, online, date)
