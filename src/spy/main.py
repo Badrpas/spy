@@ -25,17 +25,17 @@ def RunSpy():
 
     db.init()
 
+    while True:
+        response = get_users(user_ids, 'online')
 
-    response = get_users(user_ids, 'online')
-
-    now = datetime.datetime.now()
-    now_fmttd = now.strftime('%Y-%m-%d %H:%M:%S')
-    for user in response:
-        if not user['id'] in user_online or user['online'] != user_online[user['id']]:
-            user_online[user['id']] = user['online']
-            print(now_fmttd)
-            # add event to database
-            db.add_online_status(user['id'], user['online'], now_fmttd)
+        now = datetime.datetime.now()
+        now_fmttd = now.strftime('%Y-%m-%d %H:%M:%S')
+        for user in response:
+            if not user['id'] in user_online or user['online'] != user_online[user['id']]:
+                user_online[user['id']] = user['online']
+                print(now_fmttd)
+                # add event to database
+                db.add_online_status(user['id'], user['online'], now_fmttd)
 
 
     print(user_online)
