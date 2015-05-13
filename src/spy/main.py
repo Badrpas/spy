@@ -23,6 +23,8 @@ def RunSpy():
     user_ids = GetUserIds()
     user_online = {}
 
+    db.init()
+
 
     response = get_users(user_ids, 'online')
 
@@ -37,6 +39,9 @@ def RunSpy():
 
 
     print(user_online)
+
+
+    db.finalize()
 
 
 if __name__ == '__main__':
