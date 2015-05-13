@@ -35,7 +35,7 @@ table_name = 'online_history'
 def create_online_history_table():
     table = (
         "CREATE TABLE "+table_name+" ("
-        "  id                   int         NOT NULL,"
+        "  id                   int         NOT NULL     AUTO_INCREMENT,"
         "  user_id              int         NOT NULL,"
         "  online_status_change int         NOT NULL,"
         "  ondate               DATETIME            ,"
