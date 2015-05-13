@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 from vkapi import get_users
-try:
-    import db
-except:
-    print('DBshit')
-    pass
+# try:
+#     import db
+# except:
+#     print('DBshit')
+#     pass
+import db
+
 
 import datetime
 
