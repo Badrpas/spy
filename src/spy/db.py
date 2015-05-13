@@ -42,7 +42,7 @@ def create_online_history_table():
         "  PRIMARY KEY (id)"
         ")")
     if not table_exists(table_name):
-        cursor.execute(table, multi=True)
+        print(cursor.execute(table, multi=True))
         print('Created table '+table_name)
     else:
         print('Table '+table_name+' already exists')
