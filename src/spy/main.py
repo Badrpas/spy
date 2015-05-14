@@ -26,7 +26,11 @@ def RunSpy():
     db.init()
 
     while True:
-        response = get_users(user_ids, 'online')
+        try:
+            response = get_users(user_ids, 'online')
+        except:
+            print('Some error occurred')
+            continue
 
         now = datetime.datetime.now()
         now_fmttd = now.strftime('%Y-%m-%d %H:%M:%S')
