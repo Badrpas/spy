@@ -58,6 +58,7 @@ def add_online_status(user_id, online, date):
     data_post= (user_id, online, date)
     try:
         cursor.execute(add_post, data_post)
+        print('Post added')
     except mysql.connector.Error as e:
         if e.errno == 1062:
             print('Such entry is already exists')
