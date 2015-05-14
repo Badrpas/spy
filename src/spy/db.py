@@ -61,6 +61,9 @@ def add_online_status(user_id, online, date):
     except mysql.connector.Error as e:
         if e.errno == 1062:
             print('Such entry is already exists')
+        else:
+            print('Some error occurred:')
+            print(e._full_msg)
 
 
 
