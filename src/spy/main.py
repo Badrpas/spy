@@ -7,7 +7,7 @@ from vkapi import get_users
 #     pass
 import db
 
-
+import time
 import datetime
 
 def GetUserIds():
@@ -33,9 +33,10 @@ def RunSpy():
         for user in response:
             if not user['id'] in user_online or user['online'] != user_online[user['id']]:
                 user_online[user['id']] = user['online']
-                print(now_fmttd)
                 # add event to database
                 db.add_online_status(user['id'], user['online'], now_fmttd)
+        print(now_fmttd, ':', user_online)
+        time.sleep(60)
 
 
     print(user_online)
