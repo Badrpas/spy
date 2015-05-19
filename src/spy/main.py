@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from vkapi import get_users
+from vkapi import get_users, ResponseError
 # try:
 #     import db
 # except:
@@ -28,9 +28,10 @@ def RunSpy():
     try:
         while True:
             try:
+                print('Getting response.')
                 response = get_users(user_ids, 'online')
-            except:
-                print('Some error occurred')
+            except ResponseError as e:
+                print(e)
                 continue
 
             now = datetime.datetime.now()
@@ -41,7 +42,9 @@ def RunSpy():
                     # add event to database
                     db.add_online_status(user['id'], user['online'], now_fmttd)
             print(now_fmttd, ':', user_online)
+            print('Now waiting')
             time.sleep(60)
+            print('Loop ended')
     except:
         print(user_online)
         db.finalize()

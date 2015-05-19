@@ -18,16 +18,19 @@ def get_response(apiname, params):
         get_response.last_call = time.perf_counter()
 
     params['v'] = 5.29
-    r = requests.post('https://api.vk.com/method/'+apiname, params=params)
-    if r.status_code == requests.codes.ok:
-        json = r.json()
-        if 'error' in json:
-            # print('There is error[{}]:'.format(json['error']['error_code']), json['error']['error_msg'])
-            raise ResponseError(json['error'])
-        return json['response']
-    else:
-        print('FAIL code:', r.status_code)
-        return
+    try:
+        r = requests.post('https://api.vk.com/method/'+apiname, params=params)
+        if r.status_code == requests.codes.ok:
+            json = r.json()
+            if 'error' in json:
+                # print('There is error[{}]:'.format(json['error']['error_code']), json['error']['error_msg'])
+                raise ResponseError(json['error'])
+            return json['response']
+        else:
+            print('FAIL code:', r.status_code)
+            return
+    except requests.exceptions.RequestException as e:
+        print(e)
 
 get_response.last_call = None
 
@@ -46,6 +49,7 @@ def get_users(users, fields=''):
         'user_ids': users_str,
         'fields': fields,
     }
+
     r = get_response('users.get', params)
     # print(r)
     return r
