@@ -21,9 +21,9 @@ def GetUserIds():
 
 def RunSpy():
     user_ids = GetUserIds()
-    user_online = {}
 
     db.init()
+    user_online = db.get_users() #getting last user status
 
 
 
