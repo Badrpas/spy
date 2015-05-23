@@ -44,7 +44,7 @@ def RunSpy():
             db.add_online_status(user['id'], user['online'], now_fmttd)
     print(now_fmttd, ':', user_online)
     print('Now waiting')
-    time.sleep(60)
+    time.sleep(30)
     print('Loop ended')
 
 

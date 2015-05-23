@@ -59,7 +59,7 @@ def add_online_status(user_id, online, date):
     try:
         cursor.execute(add_post, data_post)
         cnx.commit()
-        print('Status added')
+        print('Status added', user_id, online, date)
     except mysql.connector.Error as e:
         if e.errno == 1062:
             print('Such entry is already exists')
