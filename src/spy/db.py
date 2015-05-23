@@ -77,7 +77,7 @@ def get_users():
     cursor.execute(query)
     result = cursor.fetchall()
     for row in result:
-        users_online[row[2]] = row[3]
+        users_online[row[1]] = row[2]
 
     return users_online
     # print("Some shit with executing get_users query")
