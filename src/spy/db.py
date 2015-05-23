@@ -67,7 +67,18 @@ def add_online_status(user_id, online, date):
             print('Some error occurred:')
             print(e._full_msg)
 
+def get_users():
+    query = (   "select *"
+                "from online_history as a"
+                "where a.id = (select max(id) from online_history where user_id = a.user_id group by user_id)"
+                "group by user_id;")
 
+    try:
+        cursor.execute(query)
+        result = cursor.fetchall()
+        print(result)
+    except:
+        print("Some shit with executing get_users query")
 
 def init():
     use_db()
@@ -76,3 +87,8 @@ def init():
 def finalize():
     cnx.commit()
     cnx.close()
+
+
+if __name__ == '__main__':
+    init()
+    get_users()
