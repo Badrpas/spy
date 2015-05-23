@@ -46,7 +46,8 @@ def create_online_history_table():
             print(item)
         print('Created table '+table_name)
     else:
-        print('Table '+table_name+' already exists')
+        # print('Table '+table_name+' already exists')
+        pass
 
 
 def add_online_status(user_id, online, date):
