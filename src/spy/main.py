@@ -41,7 +41,7 @@ def RunSpy():
             db.add_online_status(user['id'], user['online'], now_fmttd)
     print(now_fmttd, ':', user_online)
     print('Now waiting')
-    time.sleep(30)
+    time.sleep(10)
 
 
 if __name__ == '__main__':
