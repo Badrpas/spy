@@ -68,6 +68,7 @@ def add_online_status(user_id, online, date):
             print(e._full_msg)
 
 def get_users():
+    users_online = {}
     query = (   "select * "
                 "from online_history as a "
                 "where a.id = (select max(id) from online_history where user_id = a.user_id group by user_id) "
@@ -75,7 +76,10 @@ def get_users():
 
     cursor.execute(query)
     result = cursor.fetchall()
-    print(result)
+    for row in result:
+        users_online[row[2]] = row[3]
+
+    return users_online
     # print("Some shit with executing get_users query")
 
 def init():
@@ -89,4 +93,4 @@ def finalize():
 
 if __name__ == '__main__':
     init()
-    get_users()
+    print(get_users())
