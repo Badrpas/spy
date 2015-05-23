@@ -42,7 +42,6 @@ def RunSpy():
     print(now_fmttd, ':', user_online)
     print('Now waiting')
     time.sleep(30)
-    print('Loop ended')
 
 
 if __name__ == '__main__':
