@@ -73,12 +73,10 @@ def get_users():
                 "where a.id = (select max(id) from online_history where user_id = a.user_id group by user_id)"
                 "group by user_id;")
 
-    try:
-        cursor.execute(query)
-        result = cursor.fetchall()
-        print(result)
-    except:
-        print("Some shit with executing get_users query")
+    cursor.execute(query)
+    result = cursor.fetchall()
+    print(result)
+    # print("Some shit with executing get_users query")
 
 def init():
     use_db()
