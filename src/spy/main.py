@@ -25,9 +25,6 @@ def RunSpy():
     db.init()
     user_online = db.get_users() #getting last user status
 
-
-
-
     try:
         print('Getting response.')
         response = get_users(user_ids, 'online')
