@@ -8,7 +8,6 @@ var repository = function (){
     this.getHistory = function (id, callback) {
         connection.query('select * from online_history where user_id = ?;', [id], function (err, rows, fields) {
             if (err) throw err;
-            console.log(rows);
             callback(rows);
         });
     },
@@ -35,7 +34,6 @@ var repository = function (){
                     start = end = null;
                 }
             }
-            console.log(onlineTimes);
             callback(onlineTimes);
         });
     }
