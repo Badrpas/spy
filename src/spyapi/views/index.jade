@@ -1,5 +1,16 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html
+  head
+    title
+      | Hello Kitty
+    script(src='http://cdn.alloyui.com/3.0.1/aui/aui-min.js')
+    link(href='http://cdn.alloyui.com/3.0.1/aui-css/css/bootstrap.min.css', rel='stylesheet')
+    // <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    link(rel='stylesheet', href='stylesheets/normalize.css')
+    link(rel='stylesheet', href='stylesheets/style.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    script(src='javascripts/main.js')
+  body.container
+    .col-xs-10.col-xs-offset-1
+      div
+        #myScheduler(style='height: 500px;')
