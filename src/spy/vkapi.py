@@ -9,13 +9,13 @@ class ResponseError(Exception):
         return repr(self.value)
     
 def get_response(apiname, params):
-    if get_response.last_call:
-        dt = time.perf_counter() - get_response.last_call
-        get_response.last_call = time.perf_counter()
-        if dt < 0.34:
-            time.sleep(0.34-dt)
-    else:
-        get_response.last_call = time.perf_counter()
+    # if get_response.last_call:
+    #     dt = time.perf_counter() - get_response.last_call
+    #     get_response.last_call = time.perf_counter()
+    #     if dt < 0.34:
+    #         time.sleep(0.34-dt)
+    # else:
+    #     get_response.last_call = time.perf_counter()
 
     params['v'] = 5.29
     try:
