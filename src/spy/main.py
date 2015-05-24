@@ -46,7 +46,7 @@ def RunSpy():
             # add event to database
             db.add_online_status(user['id'], user['online'], now_fmttd)
     print(now_fmttd, ':', user_online)
-    print(time.time(), 'Now waiting')
+    print(datetime.datetime.now().strftime('%H:%M:%S'), 'Now waiting')
     time.sleep(10)
 
 

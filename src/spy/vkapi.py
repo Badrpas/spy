@@ -1,5 +1,5 @@
 import requests
-import time
+import datetime
 
 class ResponseError(Exception):
     def __init__(self, value):
@@ -27,7 +27,7 @@ def get_response(apiname, params, timeout=10):
                 raise ResponseError(json['error'])
             return json['response']
         else:
-            print(time.time(), 'FAIL code:', r.status_code)
+            print(datetime.datetime.now().strftime('%H:%M:%S'), 'FAIL code:', r.status_code)
             return
     except requests.exceptions.RequestException as e:
         print(e)
