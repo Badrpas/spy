@@ -36,7 +36,7 @@ def RunSpy():
         return
 
     end = time.time()
-    print(datetime.datetime.now().strftime('%H:%M:%S'), 'Time elapsed on response: {0:2d}'.format(end - start) )
+    print(datetime.datetime.now().strftime('%H:%M:%S'), 'Time elapsed on response: {0:2}'.format(end - start) )
 
     now = datetime.datetime.now()
     now_fmttd = now.strftime('%Y-%m-%d %H:%M:%S')
