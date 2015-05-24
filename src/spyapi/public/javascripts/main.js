@@ -36,7 +36,6 @@ YUI().use(
                         // gets the result of this asynchronous request
                         var data = this.get('responseData');
 
-
                         // iterates on all states to create a new <option> on that <select>
                         for (i = 0; i < data.length; i++) {
                             events.push({
