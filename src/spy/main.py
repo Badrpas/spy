@@ -36,7 +36,7 @@ def RunSpy():
         return
 
     end = time.time()
-    print('Time elapsed on response:', end - start)
+    print(datetime.datetime.now().strftime('%H:%M:%S'), 'Time elapsed on response: {0:2d}'.format(end - start) )
 
     now = datetime.datetime.now()
     now_fmttd = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -45,9 +45,12 @@ def RunSpy():
             user_online[user['id']] = user['online']
             # add event to database
             db.add_online_status(user['id'], user['online'], now_fmttd)
-    print(now_fmttd, ':', user_online)
-    print(datetime.datetime.now().strftime('%H:%M:%S'), 'Now waiting')
-    time.sleep(10)
+
+    now = datetime.datetime.now()
+    print(now.strftime('%H:%M:%S'), user_online)
+    sleep_value = 10
+    print(now.strftime('%H:%M:%S'), 'Now waiting for {0} sec'.format(sleep_value))
+    time.sleep(sleep_value)
 
 
 if __name__ == '__main__':
