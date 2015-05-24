@@ -2,6 +2,7 @@ __author__ = 'Badrpas'
 
 import mysql.connector
 from mysql.connector import errorcode
+import time
 
 
 connect_config = {'user': 'root', 'password': '123123',
@@ -44,7 +45,7 @@ def create_online_history_table():
     if not table_exists(table_name):
         for item in cursor.execute(table, multi=True):
             print(item)
-        print('Created table '+table_name)
+        print(time.time(), 'Created table '+table_name)
     else:
         # print('Table '+table_name+' already exists')
         pass
@@ -60,12 +61,12 @@ def add_online_status(user_id, online, date):
     try:
         cursor.execute(add_post, data_post)
         cnx.commit()
-        print('> Status added: id{0} went {1} at {2}'.format(user_id, 'online' if online else 'offline', date))
+        print(time.time(), '> Status added: id{0} went {1} at {2}'.format(user_id, 'online' if online else 'offline', date))
     except mysql.connector.Error as e:
         if e.errno == 1062:
-            print('Such entry is already exists')
+            print(time.time(), 'Such entry is already exists')
         else:
-            print('Some error occurred:')
+            print(time.time(), 'Some error occurred:')
             print(e._full_msg)
 
 def get_users():

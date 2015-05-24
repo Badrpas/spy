@@ -10,6 +10,7 @@ import db
 import time
 import datetime
 
+
 def GetUserIds():
     user_ids = []
     with open('id.list', 'r') as f:
@@ -25,12 +26,17 @@ def RunSpy():
     db.init()
     user_online = db.get_users() #getting last user status
 
+
+    start = time.time()
     try:
-        print('Getting response.')
+        print(start, 'Getting response. ')
         response = get_users(user_ids, 'online')
     except ResponseError as e:
         print(e)
         return
+
+    end = time.time()
+    print('Time elapsed on response:', end - start)
 
     now = datetime.datetime.now()
     now_fmttd = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -40,7 +46,7 @@ def RunSpy():
             # add event to database
             db.add_online_status(user['id'], user['online'], now_fmttd)
     print(now_fmttd, ':', user_online)
-    print('Now waiting')
+    print(time.time(), 'Now waiting')
     time.sleep(10)
 
 

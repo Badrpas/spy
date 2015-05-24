@@ -27,7 +27,7 @@ def get_response(apiname, params):
                 raise ResponseError(json['error'])
             return json['response']
         else:
-            print('FAIL code:', r.status_code)
+            print(time.time(), 'FAIL code:', r.status_code)
             return
     except requests.exceptions.RequestException as e:
         print(e)
