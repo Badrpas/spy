@@ -36,7 +36,7 @@ get_response.last_call = None
 
 
 
-def get_users(users, fields=''):
+def get_users(users, fields='', timeout=3):
     """
     :param users:
      list of user_id's
@@ -50,7 +50,7 @@ def get_users(users, fields=''):
         'fields': fields,
     }
 
-    r = get_response('users.get', params)
+    r = get_response('users.get', params, timeout=timeout)
     # print(r)
     return r
 
