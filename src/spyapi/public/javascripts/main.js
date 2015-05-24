@@ -23,7 +23,7 @@ YUI().use(
         var monthView = new Y.SchedulerMonthView();
         var weekView = new Y.SchedulerWeekView();
 
-        var id = parseInt(window.location.pathname.substr(4))
+        var id = parseInt(window.location.pathname.substr(3));
         if (!id)
             id = 179576497;
         console.log(window.location.href);
