@@ -8,7 +8,7 @@ class ResponseError(Exception):
     def __str__(self):
         return repr(self.value)
     
-def get_response(apiname, params):
+def get_response(apiname, params, timeout=10):
     # if get_response.last_call:
     #     dt = time.perf_counter() - get_response.last_call
     #     get_response.last_call = time.perf_counter()
@@ -19,7 +19,7 @@ def get_response(apiname, params):
 
     params['v'] = 5.29
     try:
-        r = requests.post('https://api.vk.com/method/'+apiname, params=params)
+        r = requests.post('https://api.vk.com/method/'+apiname, params=params, timeout=timeout)
         if r.status_code == requests.codes.ok:
             json = r.json()
             if 'error' in json:
