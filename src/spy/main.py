@@ -29,7 +29,7 @@ def RunSpy():
 
     start = time.time()
     try:
-        print(start, 'Getting response. ')
+        print(datetime.datetime.now().strftime('%H:%M:%S'), 'Getting response. ')
         response = get_users(user_ids, 'online', timeout=3)
     except ResponseError as e:
         print(e)
