@@ -26,7 +26,7 @@ YUI().use(
         var id = parseInt(window.location.pathname.substr(3));
         if (!id)
             id = 179576497;
-        console.log(window.location.href);
+        //console.log(window.location.href);
         Y.io.request(
             '/api/schedule/'+id,
             {
@@ -44,12 +44,13 @@ YUI().use(
                                 endDate: new Date(data[i].end)
                             });
                         }
-                        console.log(events);
+                        //console.log(events);
 
                         new Y.Scheduler(
                             {
                                 activeView: weekView,
                                 boundingBox: '#myScheduler',
+                                firstDayOfWeek: 1,
                                 //date: new Date(2013, 1, 4),
                                 //eventRecorder: eventRecorder,
                                 items: events,
