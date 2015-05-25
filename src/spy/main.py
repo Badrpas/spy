@@ -21,10 +21,11 @@ def GetUserIds():
 
 
 def RunSpy():
-    user_ids = GetUserIds()
+    user_ids = GetUserIds() # Из файла
 
     db.init()
-    user_online = db.get_users() #getting last user status
+    users_online = db.get_users() #getting last user status from DB
+
 
 
     start = time.time()
@@ -41,13 +42,12 @@ def RunSpy():
     now = datetime.datetime.now()
     now_fmttd = now.strftime('%Y-%m-%d %H:%M:%S')
     for user in response:
-        if not user['id'] in user_online or user['online'] != user_online[user['id']]:
-            user_online[user['id']] = user['online']
+        if not user['id'] in users_online or user['online'] != users_online[user['id']]:
+            users_online[user['id']] = user['online']
             # add event to database
             db.add_online_status(user['id'], user['online'], now_fmttd)
 
     now = datetime.datetime.now()
-    print(now.strftime('%H:%M:%S'), user_online)
     sleep_value = 10
     print(now.strftime('%H:%M:%S'), 'Now waiting for {0} sec'.format(sleep_value))
     time.sleep(sleep_value)
